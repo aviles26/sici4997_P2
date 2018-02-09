@@ -25,7 +25,7 @@ if (isset($_SESSION['userID'])) {
             session_destroy();
             session_start();
             $loggedUser = null;
-            //showError('Unauthorized access! Session destroyed!');
+            showError('Unauthorized access! Session destroyed!');
         }
     }
 }
@@ -70,7 +70,21 @@ if ($action == 'login') {
         
         showSuccess('Welcome to Lecture 6 example!');
     }
-} else {
+} else if ($action == 'courses') { //02/06/18
+    include 'mycourses.php';     //02-06-18
+    
+} else if ($action == 'messages') { 
+    include 'messages.php';
+    
+} else if ($action == 'notifications') { 
+    include 'notifications.php';
+
+} else if ($action == 'takecourses') { 
+    include 'takecourses.php';
+    
+     // $u = courses::loadFromid_courses($_POST['id_courses']);
+    
+}else {
     include './parts/body.php';
 }
 

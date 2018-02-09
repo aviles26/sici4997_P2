@@ -21,10 +21,10 @@
     </div>
     <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-left">
-			<li><a href="miscursos.html">Mis Cursos</a></li>
-            <li><a href="mensajes.html">Mensajes</a></li>  
-            <li><a href="notificaciones.html">Notificaciones</a></li>
-            <li><a href="#">Escoger Cursos</a></li>
+			<li><a href="index.php?a=courses">Mis Cursos</a></li> <!--02-06-18-->
+            <li><a href="index.php?a=messages">Mensajes</a></li>   <!--02-06-18-->
+            <li><a href="index.php?a=notifications">Notificaciones</a></li>
+            <li><a href="index.php?a=takecourses">Escoger Cursos</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           
@@ -47,32 +47,6 @@ if (!isset($loggedUser)) {
         
     </div>
 </nav>
-
-<!--
-<nav aria-label="...">
-  <ul class="pagination pagination-lg">
-    <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1">Previous</a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#">Next</a>
-    </li>
-  </ul>
-  
-  <
-  <div class="list-group">
-  <a href="#" class="list-group-item active">
-    Escoger Cursos  <span class="glyphicon glyphicon-search"></span> 
-  </a>
-  <a href="#" class="list-group-item list-group-item-action"> <span class="glyphicon glyphicon-plus-sign"></span> Dapibus ac facilisis in</a>
-  <a href="#" class="list-group-item list-group-item-action"> <span class="glyphicon glyphicon-plus-sign"></span> Morbi leo risus</a>
-  <a href="#" class="list-group-item list-group-item-action"> <span class="glyphicon glyphicon-plus-sign"></span> Porta ac consectetur ac</a>
-  <a href="#" class="list-group-item list-group-item-action"> <span class="glyphicon glyphicon-plus-sign"></span> Vestibulum at eros</a>
-</div>
-  -->
 
 
 
