@@ -32,7 +32,7 @@ WHERE m.id_user = 1");
 
 foreach($records as $rec) {
     echo "<tr>
-		<td><a class=\"btn btn-default btn-sm\" href=\"archivo.php?a=removeCourse&id={$rec['id_courses']}\"><span class=\"glyphicon glyphicon-minus\"></span> Remover</a></td>
+		<td><a class=\"btn btn-default btn-sm\" href=\"agregar.php?a=removeCourse&id={$rec['id_courses']}\"><span class=\"glyphicon glyphicon-minus\"></span> Remover</a></td>
 		<td>{$rec['seccion']}</td>
 		<td>{$rec['title']}</td>
 		<td>{$rec['grade']}</td>

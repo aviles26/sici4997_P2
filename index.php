@@ -82,9 +82,27 @@ if ($action == 'login') {
 } else if ($action == 'takecourses') { 
     include 'takecourses.php';
     
-     // $u = courses::loadFromid_courses($_POST['id_courses']);
+    $u = User::loadFromid_courses($_POST['id_courses']);
     
-}else {
+    if ($u) {
+        showError('La clase esta añadida.');
+        include 'takecourses.php';
+    } else {
+        $u = new Courses();
+        
+        $u->id = $record['id'];
+        $u->seccion = $record['seccion'];
+        $u->title = $record['title'];
+        $u->grade = $record['grade'];
+        $u->credits = $record['credits'];
+        $u->days = $record['days'];
+        $u->hours = $record['hours'];
+        $u->place = $record['place'];
+        $u->room = $record['room'];
+        
+        showSuccess('Clase añadida');
+    }
+    }else {
     include './parts/body.php';
 }
 
