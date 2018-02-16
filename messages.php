@@ -1,44 +1,40 @@
-<div class="row">
-    
+<!--Tabla de cursos seleccionados -->
+    	<div class="row">
 			<div class="col-sm-1">
 			&nbsp;
 			</div>
-            
-        <div class="col-sm-10">
-            
-<div class="list-group">
-  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">Registro</h5>
-    </div>
+			<div class="col-sm-10">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h2 class="panel-title">MENSAJES </h2>
+					</div>
+					<table class="table table-hover" id="dev-table">
+						<thead>
+							<tr>
+							</tr>
+						</thead>
+						<tbody>
     
 <?php
-
 // Read from DB
+$records = getResultFromSQL("SELECT * FROM messages"); //INSERT my_courses
 
-$data = [];
-
-
-$data[] = ['Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.'];
-
-foreach($data as $rec) {
+foreach($records as $rec) {
     echo "<tr>
-		<td>$rec[0]</td>
-
+		<td>{$rec['mensaje']}</td>
 		</tr>";
+		
 }
-
 ?>
-
-  </a>
- 
-</div>
-        </div>
-    <div class="col-sm-1">
+						
+	</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="col-sm-1">
 			&nbsp;
 			</div>
-</div>
-
+	</div>
 
 
 

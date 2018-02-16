@@ -23,14 +23,14 @@
 							</tr>
 						</thead>
 						<tbody>
-							
+
 <?php
 // Read from DB
 $records = getResultFromSQL("SELECT * FROM courses"); //INSERT my_courses
 
 foreach($records as $rec) {
     echo "<tr>
-		<td><a class=\"btn btn-default btn-sm\" href=\"./classes/agregar.php\"?a=addCourse&id={$rec['id_courses']}\"><span class=\"glyphicon glyphicon-plus\"></span> Añadir</a></td>
+		<td><a class=\"btn btn-default btn-sm\" href=\"./?a=takecourses&do=agregar&courseId={$rec['id_courses']}\"><span class=\"glyphicon glyphicon-plus\"></span> Añadir </a></td>
 		<td>{$rec['seccion']}</td>
 		<td>{$rec['title']}</td>
 		<td>{$rec['grade']}</td>
@@ -39,9 +39,10 @@ foreach($records as $rec) {
 		<td>{$rec['hours']}</td>
 		<td>{$rec['place']}</td>
 		<td>{$rec['room']}</td>
-		</tr>"; 
+		</tr>";
 }
 ?>
+						
 						</tbody>
 					</table>
 				</div>
@@ -49,10 +50,4 @@ foreach($records as $rec) {
 			<div class="col-sm-1">
 			&nbsp;
 			</div>
-	</div>  
-
-
-
-
-
-
+	</div>

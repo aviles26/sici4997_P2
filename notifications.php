@@ -1,43 +1,41 @@
-<div class="row">
-    
+<!--Tabla de cursos seleccionados -->
+    	<div class="row">
 			<div class="col-sm-1">
 			&nbsp;
 			</div>
-            
-        <div class="col-sm-10">
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-  <h2 class="panel-title">Recordatorio</h2>
-  </div>
-  
+			<div class="col-sm-10">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h2 class="panel-title">NOTIFICACIONES </h2>
+					</div>
+					<table class="table table-hover" id="dev-table">
+						<thead>
+							<tr>
+							</tr>
+						</thead>
+						<tbody>
+    
 <?php
-
 // Read from DB
+$records = getResultFromSQL("SELECT * FROM notifications"); //INSERT my_courses
 
-$data = [];
-
-$data[] = [''];
-
-showSuccess('Recuerda: Confirma tu matrícula');
-showSuccess('Recuerda: Turno de Matricula es: ');
-
-foreach($data as $rec) {
+foreach($records as $rec) {
     echo "<tr>
-		<class>$rec[0]</class>
+		<td>{$rec['notifications']}</td>
 		</tr>";
+		
 }
 ?>
-
-</div>
-
-  </div>
-</div>
-
-<div class="col-sm-1">
+						
+	</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="col-sm-1">
 			&nbsp;
 			</div>
+	</div>
 
-</div>
+
 
 

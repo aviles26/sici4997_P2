@@ -12,7 +12,7 @@ class courses {
     
     
     public static function loadFromID($id) {       
-        $records = getResultFromSQL('SELECT * FROM courses WHERE id = ?', [$id]);
+        $records = getResultFromSQL('SELECT * FROM courses WHERE id = ?', [$id_courses]);
         
         if (count($records) == 0) {
             return null;

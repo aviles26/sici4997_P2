@@ -6,13 +6,12 @@ session_start();
 date_default_timezone_set('EST');
 
 $action = (isset($_GET['a'])) ? $_GET['a'] : '';
-
 include 'db.php';
 include './classes/user.php';
 
 if (isset($_SESSION['userID'])) {
     $loggedUser = User::loadFromID($_SESSION['userID']);
-    
+
     if (is_null($loggedUser)) {
         session_destroy();
         session_start();
@@ -39,7 +38,7 @@ if ($action == 'login') {
     header('Location: index.php');
 } else if ($action == 'doLogin') {
     $u = User::loadFromUsername($_POST['username']);
-    
+
     if (is_null($u)) {
         showError('The user doesn\'t exist.');
         include './parts/login.php';
@@ -52,57 +51,91 @@ if ($action == 'login') {
         showError('The entered password is incorrect!');
         include './parts/login.php';
     }
+    
 } else if ($action == 'register') {
     include './parts/register.php';
 } else if ($action == 'doRegister') {
     $u = User::loadFromUsername($_POST['username']);
-    
+
     if ($u) {
         showError('The username already exist.');
         include './parts/register.php';
     } else {
         $u = new User();
-        
+
         $u->username = $_POST['username'];
         $u->password = $_POST['password1'];
         $u->email = $_POST['email'];
         $u->save();
-        
-        showSuccess('Welcome to Lecture 6 example!');
+
+        showSuccess('Bienvenido!');
     }
-} else if ($action == 'courses') { //02/06/18
-    include 'mycourses.php';     //02-06-18
-    
-} else if ($action == 'messages') { 
+
+} else if ($action == 'courses') {
+  
+   //Reanudamos la sesión 
+  //session_start(); 
+  //Validamos si existe realmente una sesión activa o no 
+  if($_SESSION["id_user"] =! "$loggedUser->id")
+  { 
+  //Si no hay sesión activa, lo direccionamos al index.php (inicio de sesión) 
+  header("Location: index.php?a=login");
+  }
+
+  $do = (isset($_GET['do'])) ? $_GET['do'] : '';
+  
+  if($do == 'remover') {
+    $courseId = (isset($_GET['courseId'])) ? $_GET['courseId'] : '';
+    $deleteQuery = deleteFromDatabase('DELETE FROM my_courses WHERE id_user = ? AND id_course = ?', [$loggedUser->id, $courseId]);
+    showSuccess('Su curso ha sido removido.');
+  }
+  include 'mycourses.php';     
+
+} else if ($action == 'messages') {
     include 'messages.php';
     
-} else if ($action == 'notifications') { 
-    include 'notifications.php';
+  //Reanudamos la sesión 
+  //session_start(); 
+  //Validamos si existe realmente una sesión activa o no 
+  if($_SESSION["id_user"] =! "$loggedUser->id")
+  { 
+  //Si no hay sesión activa, lo direccionamos al index.php (inicio de sesión) 
+  header("Location: index.php?a=login");
+  }
 
-} else if ($action == 'takecourses') { 
+} else if ($action == 'notifications') {
+    include 'notifications.php';
+    
+  //Reanudamos la sesión 
+  //session_start(); 
+  //Validamos si existe realmente una sesión activa o no 
+  if($_SESSION["id_user"] =! "$loggedUser->id")
+  { 
+  //Si no hay sesión activa, lo direccionamos al index.php (inicio de sesión) 
+  header("Location: index.php?a=login");
+  }
+
+} else if ($action == 'takecourses') {
     include 'takecourses.php';
     
-    $u = User::loadFromid_courses($_POST['id_courses']);
-    
-    if ($u) {
-        showError('La clase esta añadida.');
-        include 'takecourses.php';
-    } else {
-        $u = new Courses();
-        
-        $u->id = $record['id'];
-        $u->seccion = $record['seccion'];
-        $u->title = $record['title'];
-        $u->grade = $record['grade'];
-        $u->credits = $record['credits'];
-        $u->days = $record['days'];
-        $u->hours = $record['hours'];
-        $u->place = $record['place'];
-        $u->room = $record['room'];
-        
-        showSuccess('Clase añadida');
+  //Reanudamos la sesión 
+  //session_start(); 
+  //Validamos si existe realmente una sesión activa o no 
+  if($_SESSION["id_user"] =! "$loggedUser->id")
+  { 
+  //Si no hay sesión activa, lo direccionamos al index.php (inicio de sesión) 
+  header("Location: index.php?a=login");
+  }
+
+    $do = (isset($_GET['do'])) ? $_GET['do'] : '';
+
+    if($do == 'agregar') {
+      //include_once './parts/agregar.php';
+      $courseId = (isset($_GET['courseId'])) ? $_GET['courseId'] : '';
+      $insertQuery = insertToDatabase('INSERT INTO my_courses (id_user, id_course) VALUES (?, ?)', [$loggedUser->id, $courseId]);
+      showSuccess('Su curso ha sido añadido.');
     }
-    }else {
+  } else {
     include './parts/body.php';
 }
 

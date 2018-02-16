@@ -28,11 +28,11 @@
 // Read from DB
 $records =  getResultFromSQL("SELECT * FROM my_courses m
 INNER JOIN courses c ON m.id_course = c.id_courses
-WHERE m.id_user = 1");
+WHERE m.id_user = ?", [$loggedUser->id]);
 
 foreach($records as $rec) {
     echo "<tr>
-		<td><a class=\"btn btn-default btn-sm\" href=\"agregar.php?a=removeCourse&id={$rec['id_courses']}\"><span class=\"glyphicon glyphicon-minus\"></span> Remover</a></td>
+		<td><a class=\"btn btn-default btn-sm\" href=\"?a=courses&do=remover&courseId={$rec['id_courses']}\"><span class=\"glyphicon glyphicon-minus\"></span> Remover</a></td>
 		<td>{$rec['seccion']}</td>
 		<td>{$rec['title']}</td>
 		<td>{$rec['grade']}</td>
@@ -41,7 +41,7 @@ foreach($records as $rec) {
 		<td>{$rec['hours']}</td>
 		<td>{$rec['place']}</td>
 		<td>{$rec['room']}</td>
-		</tr>"; 
+		</tr>";
 }
 ?>
 						</tbody>
@@ -51,5 +51,4 @@ foreach($records as $rec) {
 			<div class="col-sm-1">
 			&nbsp;
 			</div>
-	</div>  
-
+	</div>
